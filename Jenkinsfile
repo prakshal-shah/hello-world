@@ -1,6 +1,5 @@
 node {
   stage("Checkout") {
-    steps {
       checkout(
             [$class: 'GitSCM',
             branches: [[name: '*/master']],
@@ -9,7 +8,7 @@ node {
             ]
             )
         }
-    }
+    
     
      
 }
