@@ -4,6 +4,7 @@ pipeline
      stages {
         stage("Checkout") {
             steps {
+              script{
               def ScmVar = checkout(
                 [$class: 'GitSCM',
                 branches: [[name: '*/master']],
@@ -13,6 +14,7 @@ pipeline
                 )
               def GitCommit = ScmVar.GIT_COMMIT
               env.GitCommitID = sh(returnStdout: true, script: "git rev-parse --short ${GitCommit}")
+              }
             }
         }
         stage("Version update") {
