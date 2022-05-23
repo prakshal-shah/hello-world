@@ -13,7 +13,7 @@ pipeline
                     ]
                 )
               def GitCommit = ScmVar.GIT_COMMIT
-              env.GitCommitID = sh(returnStdout: true, script: "git rev-parse --short ${GitCommit}")
+              env.GitCommitID = sh(returnStdout: true, script: "git rev-parse --short ${GitCommit}").trim()
               }
             }
         }
