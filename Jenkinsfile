@@ -37,7 +37,6 @@ pipeline
         stage("Build-dockerimage") {
             steps {
               sh '''
-              sed -i \"s/BID/$BUILD_NUMBER/g\" Dockerfile
               docker build -t nexustest2:2.\${BUILD_NUMBER} .
               '''
             }
