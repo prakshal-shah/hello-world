@@ -4,13 +4,15 @@ pipeline
      stages {
         stage("Checkout") {
             steps {
-              checkout(
+              def ScmVar = checkout(
                 [$class: 'GitSCM',
                 branches: [[name: '*/master']],
                 extensions: [],
                 userRemoteConfigs: [[url: 'https://github.com/mistryparas/hello-world.git']]
-                ]
+                    ]
                 )
+              def GitCommit = ScmVar.GIT_COMMIT
+              env.GitCommitID = sh(returnStdout: true, script: "git rev-parse --short ${GitCommit}")
             }
         }
         stage("Version update") {
@@ -32,22 +34,19 @@ pipeline
         }
         stage("Build-dockerimage") {
             steps {
-              sh '''mkdir ./docker
-              cp -av ./target/nexustest2-2.0.${BUILD_NUMBER}-SNAPSHOT.jar ./docker
-              cp -av /tmp/nexustest2 ./docker/Dockerfile
-              cd ./docker
+              sh '''
               sed -i \"s/BID/$BUILD_NUMBER/g\" Dockerfile
               docker build -t nexustest2:2.\${BUILD_NUMBER} .
-              rm -rf nexustest2-2.0.${BUILD_NUMBER}-SNAPSHOT.jar'''
+              '''
             }
         }
         stage("image push") {
             steps {
-              sh '''cd ./docker
+              sh '''
               docker login -u admin -p redhat 192.168.56.250:9092
-              docker tag nexustest2:2.${BUILD_NUMBER} 192.168.56.250:9092/dockertest2:2.${BUILD_NUMBER}
-              docker push 192.168.56.250:9092/dockertest2:2.${BUILD_NUMBER}
-              docker rmi -f nexustest2:2.${BUILD_NUMBER} 192.168.56.250:9092/dockertest2:2.${BUILD_NUMBER}  '''
+              docker tag nexustest2:2.${BUILD_NUMBER} 192.168.56.250:9092/dockertest2:2.${GitCommitID}.${BUILD_NUMBER}
+              docker push 192.168.56.250:9092/dockertest2:2.${GitCommitID}.${BUILD_NUMBER}
+              docker rmi -f nexustest2:2.${BUILD_NUMBER} 192.168.56.250:9092/dockertest2:2.${GitCommitID}.${BUILD_NUMBER}  '''
             }
         }
         
