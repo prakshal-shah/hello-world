@@ -23,6 +23,7 @@
     <scm>
         <developerConnection>scm:git:${git.url}.git</developerConnection>
         <url>${git.url}</url>
+       <tag>HEAD</tag>  
     </scm>
 
 
@@ -81,3 +82,4 @@
 
 
 </project>
+
