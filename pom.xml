@@ -21,7 +21,7 @@
     
     <!-- Mention your GIT Repository -->
     <scm>
-        <developerConnection>scm:git:${git.url}.git</developerConnection>
+        <developerConnection>scm:git:${git.url}</developerConnection>
         <url>${git.url}</url>
        <tag>HEAD</tag>  
     </scm>
