@@ -15,7 +15,7 @@
     <properties>
         <!-- git.url should not have / at the end. -->
         <!-- For an exampe, https://github.com/duclo/backend-shared -->
-        <git.url>https://github.com/mistryparas/hello-world.git</git.url>
+        <git.url>https://github.com/prakshal-shah/hello-world.git</git.url>
     </properties>
     
     <!-- Mention your GIT Repository -->
@@ -59,23 +59,23 @@
     <repositories>
         <repository>
             <id>duclo-snapshot</id>
-            <url>http://192.168.56.250:8081/repository/backend-library-snapshot/</url>
+            <url>http://192.168.0.107:8081/repository/backend-shared-snapshot/</url>
             <snapshots><enabled>true</enabled></snapshots>
         </repository>
         <repository>
             <id>duclo-release</id>
-            <url>http://192.168.56.250:8081/repository/backend-library/</url>
+            <url>http://192.168.0.107:8081/repository/backend-shared/</url>
             <snapshots><enabled>false</enabled></snapshots>
         </repository>
     </repositories>
     <distributionManagement>
         <snapshotRepository>
             <id>duclo-snapshot</id>
-            <url>http://192.168.56.250:8081/repository/backend-library-snapshot/</url>
+            <url>http://192.168.0.107:8081/repository/backend-shared-snapshot/</url>
         </snapshotRepository>
         <repository>
             <id>duclo-release</id>
-            <url>http://192.168.56.250:8081/repository/backend-library/</url>
+            <url>http://192.168.0.107:8081/repository/backend-shared/</url>
         </repository>
     </distributionManagement>
 
