@@ -24,7 +24,7 @@
     <scm>
         <developerConnection>scm:git:${git.url}</developerConnection>
         <url>${git.url}</url>
-       <tag>HEAD</tag>  
+       <tag>mytest</tag>  
     </scm>
 
 
