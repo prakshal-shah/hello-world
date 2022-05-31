@@ -58,7 +58,7 @@
     </build>
     <repositories>
         <repository>
-            <id>nexus</id>
+            <id>duclo-snapshot</id>
             <url>http://192.168.0.107:8081/repository/backend-shared-snapshot/</url>
             <snapshots><enabled>true</enabled></snapshots>
         </repository>
@@ -70,7 +70,7 @@
     </repositories>
     <distributionManagement>
         <snapshotRepository>
-            <id>nexus</id>
+            <id>duclo-snapshot</id>
             <url>http://192.168.0.107:8081/repository/backend-shared-snapshot/</url>
         </snapshotRepository>
         <repository>
