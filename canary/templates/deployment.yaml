@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  {{ .Values.deployment.app_name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app:  {{ .Values.deployment.app_name }}
+  replicas: {{ .Values.deployment.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.app_name }}
+    spec:
+      containers:
+      - name: dockertest1
+        image: {{ .Values.deployment.image }}
+        imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
+        ports:
+        - containerPort: {{ .Values.deployment.containerPort }}
+          protocol: {{ .Values.deployment.protocol }}
+      imagePullSecrets:
+        - name: {{ .Values.secret.name }}

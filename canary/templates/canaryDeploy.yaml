@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.canaryDeploy.name }}
+  namespace: grouptest1
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.canaryDeploy.app_name }}
+  replicas: {{ .Values.canaryDeploy.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.canaryDeploy.app_name }}
+    spec:
+      containers:
+      - name: dockertest1
+        image: {{ .Values.canaryDeploy.image }}
+        imagePullPolicy: {{ .Values.canaryDeploy.imagePullPolicy}}
+        ports:
+        - containerPort: {{ .Values.canaryDeploy.containerPort }}
+          protocol: {{ .Values.canaryDeploy.protocol }}
+      imagePullSecrets:
+        - name: {{ .Values.secret.name }}

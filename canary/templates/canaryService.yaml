@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.canaryService.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  ports:
+  - port: {{ .Values.canaryService.port }}
+    nodePort: {{ .Values.canaryService.NodePort }}
+    protocol: {{ .Values.canaryService.protocol }}
+  selector:
+    app: {{ .Values.canaryService.selector_app }}
+  type: {{ .Values.canaryService.service_type }}
