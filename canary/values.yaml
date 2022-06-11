@@ -2,17 +2,17 @@ namespace: grouptest1
 
 deployment:
   replicas: 4
-  image: 1192.168.56.250:9091/dockertest1:6.1.1-66
-  app_name: dockertest1:6.1.1-66
+  image: 1192.168.56.250:9091/dockertest1:6.1.1-68
+  app_name: dockertest1:6.1.1-68
   imagePullPolicy: Always
   containerPort: 8080
   protocol: TCP
 
 service:
-  name: service-dockertest1:6.1.1-66
+  name: service-dockertest1:6.1.1-68
   port: 8080
   nodePort: 30031
-  selector_app: dockertest1:6.1.1-66
+  selector_app: dockertest1:6.1.1-68
   service_type: NodePort
   protocol: TCP
   
@@ -20,17 +20,17 @@ secret:
   name: grouptest1
 
 canaryService:
-  name: canary-service-dockertest1:6.1.1-66
+  name: canary-service-dockertest1:6.1.1-68
   port: 8080
   nodePort: 30020
-  selector_app: canary-dockertest1:6.1.1-66
+  selector_app: canary-dockertest1:6.1.1-68
   service_type: NodePort
   protocol: TCP
 
 canaryDeploy:
   replicas: 0
-  image: 192.168.56.250:9091/dockertest1:6.1.1-66
-  app_name: canary-dockertest1:6.1.1-66
+  image: 192.168.56.250:9091/dockertest1:6.1.1-68
+  app_name: canary-dockertest1:6.1.1-68
   imagePullPolicy: Always
   containerPort: 8080
   protocol: TCP
