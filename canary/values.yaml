@@ -29,7 +29,7 @@ canaryService:
 
 canaryDeploy:
   replicas: 0
-  image: 1192.168.56.250:9091/dockertest1:1.8
+  image: 192.168.56.250:9091/dockertest1:1.8
   app_name: canary-dockertest1
   imagePullPolicy: Always
   containerPort: 8080
